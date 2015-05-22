@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html>
-<script src= "js/angular.min.js"></script>
-<body>
+<!doctype html>
+<html ng-app="weatherApp">
+    <head>
+        <title>Weather Example AngularJS</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="js/weather.js"></script>
+    </head>
 
-<div ng-app="myApp" ng-controller="customersCtrl"> 
-
-<ul>
-  <li ng-repeat="x in names">
-    {{ x.Name + ', ' + x.Country }}
-  </li>
-</ul>
-
-</div>
-
-<script>
-var app = angular.module('myApp', []);
-app.controller('customersCtrl', function($scope, $http) {
-  $http.get("http://www.w3schools.com/angular/customers.php")
-  .success(function (response) {$scope.names = response.records;});
-});
-</script>
-
-</body>
+    <body>
+        <div ng-controller="WeatherCtrl">
+            <h2>Hanoi, Vietnam</h2>
+            <div style="float:left"><img ng-src="{{img_url}}"></div>
+            <h3>Current: {{ current | number: 1}} &deg;C</h3>
+            min: {{ temp_min | number: 1}} &deg;C, max: {{ temp_max| number: 1}} &deg;C.
+            <h3>Wind: {{wind_speed}} km/h</h3>
+        </div>
+    </body>
 </html>
